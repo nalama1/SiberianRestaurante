@@ -1,0 +1,33 @@
+﻿@page "/Ciudades"
+
+
+@inject HttpClient Http
+
+<h3>Ciudad</h3>
+
+<table class="table table-sm table-striped">
+    @if (oRespuesta != null && oRespuesta.Data != null)
+    {
+        @foreach (var item in oRespuesta.Data)
+        {
+            <tr>
+                <td>@item.Idciudad </td>
+                <td>@item.NombreCiudad </td>
+                <td>@item.FechaCreacion </td>
+            </tr>
+        }
+    }
+
+
+</table>
+
+
+@code {
+    public string Url = "/api/Ciudades";
+    public Respuesta oRespuesta = new Respuesta();
+
+    protected override async Task OnInitializedAsync() =>
+        oRespuesta = await Http.GetFromJsonAsync<Respuesta>(Url);
+
+
+}

@@ -1,0 +1,26 @@
+﻿@page "/Ciudades"
+@using BlazorFrontend.Models
+
+@inject HttpClient Http
+
+<h3>Ciudad</h3>
+
+<table class="table table-striped">
+    @foreach (var item in (List<Ciudad>)oRespuesta.Data)
+    {
+        <tr>            
+             
+        </tr>
+    }
+</table>
+
+
+@code {
+    public string Url = "/api/Ciudades";
+    public Respuesta oRespuesta = new Respuesta();
+
+    protected override async Task OnInitializedAsync() =>
+        oRespuesta = await Http.GetFromJsonAsync<Respuesta>(Url);
+
+
+}
